@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Section</title>
+    <link rel="stylesheet" href="D:\Website\HTML\DiningTable.css">
+    <script>
+        // Function to handle Add to Cart button click
+        function addToCart(productName) {
+            // Retrieve current cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Add product to cart
+            cart.push(productName);
+
+            // Save updated cart back to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Display a success message
+            alert(productName + " has been added to your cart!");
+
+            // Optionally update cart count or icon here
+            updateCartCount();
+        }
+
+        // Function to handle Buy Now button click
+        function buyNow(productName) {
+            // Display billing modal
+            document.getElementById('billingModal').style.display = 'block';
+
+            // Store product name in modal (optional)
+            document.getElementById('selectedProduct').textContent = productName;
+        }
+
+        // Function to update cart count (optional)
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartCount = cart.length;
+
+            // You can display the cart count on your page, e.g. in a cart icon
+            let cartCountElement = document.getElementById('cart-count');
+            if (cartCountElement) {
+                cartCountElement.textContent = cartCount;
+            }
+        }
+
+        // Function to handle billing form submission
+        function submitBilling() {
+            // Collect billing info from form
+            const name = document.getElementById('billingName').value;
+            const address = document.getElementById('billingAddress').value;
+            const payment = document.getElementById('billingPayment').value;
+
+            if (!name || !address || !payment) {
+                alert("Please fill out all fields.");
+                return;
+            }
+
+            // Here, you can process the payment and send the info to your backend (e.g., create an order)
+            alert("Thank you for your purchase, " + name + "!\n" +
+                "Product: " + document.getElementById('selectedProduct').textContent + "\n" +
+                "Shipping to: " + address + "\n" +
+                "Payment method: " + payment);
+
+            // Close the modal
+            document.getElementById('billingModal').style.display = 'none';
+        }
+        // Function to clear cart (clear localStorage data)
+        function clearCartOnLoad() {
+            localStorage.removeItem('cart');
+            updateCartCount(); // Update cart count after clearing
+        }
+
+        // Call this function on page load to set initial cart count and clear cart
+        window.onload = function () {
+            clearCartOnLoad();  // Clears cart every time the page is loaded
+            updateCartCount();  // Updates cart count to 0
+        };
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">Furniture Store</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Products.html">Products</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search..." class="search-input">
+                <button class="search-button">🔍</button>
+            </div>
+            <!-- Optional: Add cart count in the header -->
+            <div class="cart-icon">
+                <span>🛒</span>
+                <span id="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="products" class="products">
+        <h2>Dining Table Section</h2>
+        <div class="product-list">
+           <!-- Product 1 -->
+           <div class="product">
+            <img src="D:\Website\HTML\Dining table\Dining table.jpg" alt="4 Seater Dining Table" />
+            <h3>4 Seater Dining Table</h3>
+            <p>₹21,999</p>
+            <p>MoonWooden Sheesham Wooden 4 Seater Dining Table</p>
+            <button aria-label="Add 4 Seater Dining Table to cart" onclick="addToCart('4 Seater Dining Table')">Add To cart</button>
+            <button aria-label="4 Seater Dining Table" onclick="buyNow('4 Seater Dining Table')">Buy Now</button>
+        </div>
+        <!-- Product 2 -->
+        <div class="product">
+            <img src="D:\Website\HTML\Dining table\Dining2.jpg" alt="Dining table" />
+            <h3> 6 Seater Dining Table</h3>
+            <p>₹16,999</p>
+            <p>Royaloak Ashoka Sheesham Wood 6 Seater Dining Table Set </p>
+            <button aria-label="Add WOODEN WARDROBE to cart" onclick="addToCart('Royaloak Ashoka Sheesham Wood 6 Seater Dining Table Set')">Add To cart</button>
+            <button aria-label="Buy Royaloak Ashoka Sheesham Wood 6 Seater Dining Table Set now" onclick="buyNow('Royaloak Ashoka Sheesham Wood 6 Seater Dining Table Set')">Buy Now</button>
+        </div>
+        <!-- Product 3 -->
+        <div class="product">
+            <img src="D:\Website\HTML\Dining table\Dining3.jpg" alt="Priti Kitchen Table" />
+            <h3>Priti Kitchen Table and 2 Chairs for 4</h3>
+            <p>₹9,799</p>
+            <p>Priti Kitchen Table and 2 Chairs for 4</p>
+            <button aria-label="Add Priti Kitchen Table and 2 Chairs for 4 to cart" onclick="addToCart('Priti Kitchen Table and 2 Chairs for 4')">Add To cart</button>
+            <button aria-label="Buy Priti Kitchen Table and 2 Chairs for 4 now" onclick="buyNow('Priti Kitchen Table and 2 Chairs for 4')">Buy Now</button>
+        </div>
+        <!-- Product 4 -->
+        <div class="product">
+            <img src="D:\Website\HTML\Dining table\Dining4.jpg" alt="Gizoon Wood Dining Table" />
+            <h3>Gizoon Wood Dining Table</h3>
+            <p>₹6,500</p>
+            <p>Gizoon Wood Dining Table Set For 2, 3 Piece Kitchen Table With 2 Chairs </p>
+            <button aria-label="Add Gizoon Wood Dining Table to cart" onclick="addToCart('Gizoon Wood Dining Table')">Add To cart</button>
+            <button aria-label="Buy Gizoon Wood Dining Table now" onclick="buyNow('Gizoon Wood Dining Table')">Buy Now</button>
+        </div>
+        <!-- Product 5 -->
+        <div class="product">
+            <img src="D:\Website\HTML\Dining table\Dining5.jpg" alt="COMBAT FURNITURE " />
+            <h3>4 Seater Dining Table with Chair for Living Room</h3>
+            <p> ₹18,798</p>
+            <p>COMBAT FURNITURE Sheesham Wood 4 Seater Dining Table with Chair</p>
+            <button aria-label="Add  Sheesham Wood 4 Seater Dining Table with Chai to cart" onclick="addToCart(' Sheesham Wood 4 Seater Dining Table with Chai')">Add To cart</button>
+            <button aria-label="Buy  Sheesham Wood 4 Seater Dining Table with Chai now" onclick="buyNow(' Sheesham Wood 4 Seater Dining Table with Chai')">Buy Now</button>
+        </div>
+        <!-- Product 6 -->
+        <div class="product">
+            <img src="D:\Website\HTML\Dining table\Dining6.jpg" alt="SONA ART & CRAFTS Modern Furniture" />
+            <h3>SONA ART & CRAFTS Modern Furniture</h3>
+            <p>₹15,669</p>
+            <p>SONA ART & CRAFTS Modern Furniture Solid Sheesham Wood Dining Table 4 Seater Dining Table Set with 4 Cushion Chairs </p>
+            <button aria-label="Add SONA ART & CRAFTS Modern Furniture to cart" onclick="addToCart('SONA ART & CRAFTS Modern Furniture')">Add To cart</button>
+            <button aria-label="Buy SONA ART & CRAFTS Modern Furniture now" onclick="buyNow('SONA ART & CRAFTS Modern Furniture')">Buy Now</button>
+        </div>
+        <!-- Product 7 -->
+        <div class="product">
+            <img src="D:\Website\HTML\Dining table\Dining7.jpg" alt="Studio Kook Bonbon 4 Seater Folding Dining Table" />
+            <h3>Studio Kook Bonbon 4 Seater Folding Dining Table</h3>
+            <p>₹21,845</p>
+            <p>Studio Kook Bonbon 4 Seater Folding Dining Table With Inbuilt Seating</p>
+            <button aria-label="Add Studio Kook Bonbon 4 Seater Folding Dining Table  to cart" onclick="addToCart('Studio Kook Bonbon 4 Seater Folding Dining Table ')">Add To cart</button>
+            <button aria-label="Buy Studio Kook Bonbon 4 Seater Folding Dining Table  now" onclick="buyNow('Studio Kook Bonbon 4 Seater Folding Dining Table ')">Buy Now</button>
+        </div>
+        <!-- Product 8 -->
+        <div class="product">
+            <img src="D:\Website\HTML\Dining table\Dining8.jpg" alt="Coffee Table" />
+            <h3>Mahimart And Handicrafts Sheesham Wood 4 Seater Dining Table Set</h3>
+            <p>₹17,995</p>
+            <p>Mahimart And Handicrafts Sheesham Wood 4 Seater Dining Table Set with Cushioned Chairs | Stylish Handcrafted Wooden Dining Set Furniture for Living Room. </p>
+            <button aria-label="Add Mahimart And Handicrafts Sheesham Wood 4 Seater Dining Table Set to cart" onclick="addToCart('Mahimart And Handicrafts Sheesham Wood 4 Seater Dining Table Set')">Add To cart</button>
+            <button aria-label="Buy Mahimart And Handicrafts Sheesham Wood 4 Seater Dining Table Set now" onclick="buyNow('Mahimart And Handicrafts Sheesham Wood 4 Seater Dining Table Set')">Buy Now</button>
+        </div>
+        </div>
+    </section>
+
+    <!-- Billing Modal -->
+    <div id="billingModal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);">
+        <div style="background: white; padding: 20px; margin: 50px auto; width: 300px;">
+            <h3>Enter Billing Details</h3>
+            <p>Product: <span id="selectedProduct"></span></p>
+            <form>
+                <label for="billingName">Name:</label>
+                <input type="text" id="billingName" required><br><br>
+
+                <label for="billingAddress">Address:</label>
+                <textarea id="billingAddress" required></textarea><br><br>
+
+                <label for="billingPayment">Payment Method:</label>
+                <select id="billingPayment" required>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Debit Card">Debit Card</option>
+                    <option value="PayPal">PayPal</option>
+                </select><br><br>
+
+                <button type="button" onclick="submitBilling()">Submit</button>
+                <button type="button" onclick="document.getElementById('billingModal').style.display='none'">Cancel</button>
+            </form> 
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Furniture Store. All rights reserved. Create. Develop. Design.</p>
+    </footer>
+</body>
+
+</html>

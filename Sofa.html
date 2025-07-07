@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Section</title>
+    <link rel="stylesheet" href="wardrobe1.css">
+    <script>
+        // Function to handle Add to Cart button click
+        function addToCart(productName) {
+            // Retrieve current cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Add product to cart
+            cart.push(productName);
+
+            // Save updated cart back to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Display a success message
+            alert(productName + " has been added to your cart!");
+
+            // Optionally update cart count or icon here
+            updateCartCount();
+        }
+
+        // Function to handle Buy Now button click
+        function buyNow(productName) {
+            // Display billing modal
+            document.getElementById('billingModal').style.display = 'block';
+
+            // Store product name in modal (optional)
+            document.getElementById('selectedProduct').textContent = productName;
+        }
+
+        // Function to update cart count (optional)
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartCount = cart.length;
+
+            // You can display the cart count on your page, e.g. in a cart icon
+            let cartCountElement = document.getElementById('cart-count');
+            if (cartCountElement) {
+                cartCountElement.textContent = cartCount;
+            }
+        }
+
+        // Function to handle billing form submission
+        function submitBilling() {
+            // Collect billing info from form
+            const name = document.getElementById('billingName').value;
+            const address = document.getElementById('billingAddress').value;
+            const payment = document.getElementById('billingPayment').value;
+
+            if (!name || !address || !payment) {
+                alert("Please fill out all fields.");
+                return;
+            }
+
+            // Here, you can process the payment and send the info to your backend (e.g., create an order)
+            alert("Thank you for your purchase, " + name + "!\n" +
+                "Product: " + document.getElementById('selectedProduct').textContent + "\n" +
+                "Shipping to: " + address + "\n" +
+                "Payment method: " + payment);
+
+            // Close the modal
+            document.getElementById('billingModal').style.display = 'none';
+        }
+
+        // Function to clear cart (clear localStorage data)
+        function clearCartOnLoad() {
+            localStorage.removeItem('cart');
+            updateCartCount(); // Update cart count after clearing
+        }
+
+        // Call this function on page load to set initial cart count and clear cart
+        window.onload = function () {
+            clearCartOnLoad();  // Clears cart every time the page is loaded
+            updateCartCount();  // Updates cart count to 0
+        };
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">Furniture Store</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Products.html">Products</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search..." class="search-input">
+                <button class="search-button">🔍</button>
+            </div>
+
+            <div class="cart-icon">
+                <span>🛒</span>
+                <span id="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="products" class="products">
+        <h2>Sofa Section</h2>
+        <div class="product-list">
+            <!-- Product 1 -->
+            <div class="product">
+                <img src="./Sofa/61P3aL0IufL._SX679_.jpg" alt="AMATA Marino" />
+                <h3>AMATA Marino</h3>
+                <p>₹15,990</p>
+                <p>AMATA Marino 3 Seater Ocean Blue Suede Velvet Fabric Sofa </p><br><br>
+                <button aria-label="AMATA Marino 3 Seater" onclick="addToCart('AMATA Marino 3 Seater')">Add To cart</button>
+                <button aria-label="AMATA Marino 3 Seater" onclick="buyNow('AMATA Marino 3 Seater')">Buy Now</button>
+            </div>
+            <!-- Product 2 -->
+            <div class="product">
+                <img src="./Sofa/rec.jpg" alt="Inflatable Recliner Sofa" />
+                <h3>PVC Inflatable Recliner Sofa </h3>
+                <p>₹16,999</p>
+                <p>Lightweight & Portable, Ideal for Home</p><br><br><br>
+                <button aria-label="Add PVC Inflatable Recliner Sofa" onclick="addToCart('PVC Inflatable Recliner Sofa')">Add To cart</button>
+                <button aria-label="Buy PVC Inflatable Recliner Sofa now" onclick="buyNow('PVC Inflatable Recliner Sofa')">Buy Now</button>
+            </div>
+            <!-- Product 3 -->
+            <div class="product">
+                <img src="./Sofa/mul.jpg" alt="SOFA SANCTUARY" />
+                <h3>SOFA SANCTUARY</h3>
+                <p>₹9,799</p>
+                <p>SOFA SANCTUARY Three Seater Sofa Cum Bed </p><br><br>
+                <button aria-label="Add SOFA SANCTUARY Three Seater Sofa Cum Bed  to cart" onclick="addToCart('SOFA SANCTUARY')">Add To cart</button>
+                <button aria-label="Buy SOFA SANCTUARY Three Seater Sofa Cum Bed  now" onclick="buyNow('SOFA SANCTUARY')">Buy Now</button>
+            </div>
+            <!-- Product 4 -->
+            <div class="product">
+                <img src="./Sofa/nap.jpg" alt="Little NAP Helios" />
+                <h3>Little NAP Helios</h3>
+                <p>₹25,699</p>
+                <p>Little NAP Helios Soft Suede Fabric Single Motorized with Cup Holder </p>
+                <button aria-label="Add Little NAP Helios to cart" onclick="addToCart('Little NAP Helios')">Add To cart</button>
+                <button aria-label="Buy Little NAP Helios now" onclick="buyNow('Little NAP Helios')">Buy Now</button>
+            </div>
+            <!-- Product 5 -->
+            <div class="product">
+                <img src="./Sofa/home.jpg" alt="Home Centre 3 Seater " />
+                <h3>Home Centre 3 Seater Sofa </h3>
+                <p>₹18,499</p>
+                <p>Home Centre 3 Seater Berry Fabric Sofa|Fabric Sofa for Living Room</p>
+                <button aria-label="Add Home Centre 3 Seater Sofa to cart" onclick="addToCart('Home Centre 3 Seater Sofa')">Add To cart</button>
+                <button aria-label="Buy Home Centre 3 Seater Sofa now" onclick="buyNow('Home Centre 3 Seater Sofa')">Buy Now</button>
+            </div>
+            <!-- Product 6 -->
+            <div class="product">
+                <img src="./Sofa/FURN.jpg" alt="FURNY Lexusa 5 Seater" />
+                <h3>FURNY Lexusa 5 Seater</h3>
+                <p>₹19,799</p>
+                <p>FURNY Lexusa 5 Seater 3+1+1 Sofa Set for Living Room (Dark Grey)</p>
+                <button aria-label="Add FURNY Lexusa 5 Seater to cart" onclick="addToCart('FURNY Lexusa 5 Seater')">Add To cart</button>
+                <button aria-label="Buy FURNY Lexusa 5 Seater now" onclick="buyNow('FURNY Lexusa 5 Seater')">Buy Now</button>
+            </div>
+            <!-- Product 7 -->
+            <div class="product">
+                <img src="./Sofa/beanbag.jpg" alt="Biggie Bean Bag" />
+                <h3>Biggie Bean Bag Chair with Beans Filled 4XL Bean</h3>
+                <p>₹19,555</p>
+                <p>Biggie Bean Bag Chair with Beans Filled 4XL Bean Bag Sofa with Free Cushion and Footrest </p> <br>
+                <button aria-label="Add Biggie Bean Bag to cart" onclick="addToCart('Biggie Bean Bag')">Add To cart</button>
+                <button aria-label="BuyBiggie Bean Bag now" onclick="buyNow('Biggie Bean Bag')">Buy Now</button>
+            </div>
+            <!-- Product 8 -->
+            <div class="product">
+                <img src="./Sofa/black.jpg" alt="Westido Homes Leatherette" />
+                <h3>Westido Homes Leatherette</h3>
+                <p>55,455</p>
+                <p>Westido Homes Leatherette 3 Seater Sofa Finish Color - Matte Black </p> <br><br><br>
+                <button aria-label="Add Westido Homes Leatherette to cart" onclick="addToCart('Westido Homes Leatherette')">Add To cart</button>
+                <button aria-label="Buy Westido Homes Leatherette now" onclick="buyNow('Coffee TaWestido Homes Leatherette')">Buy Now</button>
+            </div>
+
+            <div class="product">
+                <img src="./Sofa/whi.jpg" alt="AMATA Eagle 3 Seater" />
+                <h3>AMATA Eagle 3 Seater</h3>
+                <p>5,455</p>
+                <p>AMATA Eagle 3 Seater Sofa Cum Bed Camel Suede velevt Fabric with Two Cushions</p> <br><br>
+                <button aria-label="Add AMATA Eagle 3 Seater to cart" onclick="addToCart('AMATA Eagle 3 Seater')">Add To cart</button>
+                <button aria-label="Buy AMATA Eagle 3 Seater now" onclick="buyNow('AMATA Eagle 3 Seater')">Buy Now</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Billing Modal -->
+    <div id="billingModal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);">
+        <div style="background: white; padding: 20px; margin: 50px auto; width: 300px;">
+            <h3>Enter Billing Details</h3>
+            <p>Product: <span id="selectedProduct"></span></p>
+            <form>
+                <label for="billingName">Name:</label>
+                <input type="text" id="billingName" required><br><br>
+
+                <label for="billingAddress">Address:</label>
+                <textarea id="billingAddress" required></textarea><br><br>
+
+                <label for="billingPayment">Payment Method:</label>
+                <select id="billingPayment" required>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Debit Card">Debit Card</option>
+                    <option value="PayPal">PayPal</option>
+                </select><br><br>
+
+                <button type="button" onclick="submitBilling()">Submit</button>
+                <button type="button" onclick="document.getElementById('billingModal').style.display='none'">Cancel</button>
+            </form> 
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Furniture Store. All rights reserved. Create. Develop. Design.</p>
+    </footer>
+</body>
+
+</html>
+

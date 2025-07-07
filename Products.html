@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Section</title>
+    <link rel="stylesheet" href="products.css">
+    <script>
+        // Function to handle View All button click
+        function viewAll(productCategory) {
+            alert("Viewing all " + productCategory);
+            // You can redirect to the relevant page here if needed
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">Furniture Store</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Products.html">Products</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search..." class="search-input">
+                <button class="search-button">🔍</button>
+            </div>
+        </nav>
+    </header>
+
+    <section id="products" class="products">
+        <h2>Our Products</h2>
+        <div class="product-list">
+            <!-- Product 1 -->
+            <div class="product">
+                <img src="Images/Wardrobe.jpg" alt="Wooden Wardrobe" />
+                <h3>Wardrobe</h3><br>
+                <a href="Wardrobe.html"><button class="btn btn-primary">View All</button></a>
+            </div>
+            <!-- Product 2 -->
+            <div class="product">
+                <img src="Images/Dining table.jpg" alt="Dining Table" />
+                <h3>Dining Table</h3><br>
+                <a href="DiningTable.html"><button class="btn btn-primary">View All</button></a>
+            </div>
+            <!-- Product 3 -->
+            <div class="product">
+                <img src="Images/Sofa.jpg" alt="Comfortable Sofa" />
+                <h3>Sofa</h3>
+                <a href="Sofa.html"><button class="btn btn-primary">View All</button></a>
+            </div>
+            
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Furniture Store. All rights reserved. Create. Develop. Design.</p>
+    </footer>
+</body>
+</html>
